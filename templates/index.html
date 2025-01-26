@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="static/script.js"></script>
+    <title>Undercoover</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blur">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <h1 class="mb-0">Undercoover</h1>
+        </a>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <h2>Game Settings</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="alert alert-danger">
+        {% for category, message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <form action="/generate_pdf" method="post" id="gameForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="playerCount" class="form-label">
+              Number of Players
+              <i
+                class="bi bi-info-circle-fill info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="The total number of players participating in the game."
+              ></i>
+            </label>
+            <input
+              type="number"
+              class="form-control"
+              id="playerCount"
+              name="playerCount"
+              min="1"
+              value="3"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="undercoverCount" class="form-label">
+              Number of Undercovers
+              <i
+                class="bi bi-info-circle-fill info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="The number of players who will be the undercover."
+              ></i>
+            </label>
+            <input
+              type="number"
+              class="form-control"
+              id="undercoverCount"
+              name="undercoverCount"
+              min="0"
+              value="1"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="mrWhiteCount" class="form-label">
+              Number of Mr. Whites
+              <i
+                class="bi bi-info-circle-fill info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="The number of players who will be Mr. White."
+              ></i>
+            </label>
+            <input
+              type="number"
+              class="form-control"
+              id="mrWhiteCount"
+              name="mrWhiteCount"
+              min="0"
+              value="0"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pdfCount" class="form-label">
+              Number of Games
+              <i
+                class="bi bi-info-circle-fill info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="The number of sets of cards to generate for different games."
+              ></i>
+            </label>
+            <input
+              type="number"
+              class="form-control"
+              id="pdfCount"
+              name="pdfCount"
+              value="1"
+              min="1"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-light" style="font-size: 1.25rem">
+          Generate the PDF
+        </button>
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
